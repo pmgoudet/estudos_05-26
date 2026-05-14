@@ -1,6 +1,6 @@
 <?php
 
-include "./utils.php";
+require_once "./utils.php";
 
 class ModelUser
 {
@@ -115,7 +115,7 @@ class ModelUser
     try {
       $req = $this->getDb()->prepare("SELECT id_user, email, created_at FROM `users` WHERE email = ? LIMIT 1;");
       $email = $this->getEmail();
-      $req->bindParam(1, $email, PDO::PARAM_INT);
+      $req->bindParam(1, $email, PDO::PARAM_STR);
       $req->execute();
       $data = $req->fetchAll(PDO::FETCH_ASSOC);
 
@@ -156,7 +156,7 @@ class ModelUser
   public function delete(): string
   {
     try {
-      $req = $this->getDb()->prepare("DELETE `admin` WHERE id_admin = ?");
+      $req = $this->getDb()->prepare("DELETE FROM `admin` WHERE id_admin = ?");
       $id = $this->getId();
       $req->bindParam(1, $id, PDO::PARAM_INT);
       $req->execute();
