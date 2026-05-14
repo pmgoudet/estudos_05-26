@@ -1,0 +1,135 @@
+🚀 PROJETO: Sistema de usuários (CRUD + login)
+🧱 Etapa 1 — Banco de dados
+🔹 Objetivo
+
+Criar uma tabela users
+
+🧩 Estrutura esperada:
+id (INT, auto increment)
+email (VARCHAR, único)
+password (VARCHAR)
+created_at (TIMESTAMP)
+
+👉 Você pode usar:
+
+phpMyAdmin
+ou CLI MySQL
+
+
+🧠 Exercício 1
+
+Cria a tabela no banco.
+
+🔗 Etapa 2 — Conexão com o banco
+🧠 Objetivo
+
+Criar um arquivo tipo:
+
+db.php
+
+Você vai precisar:
+PDO (usa isso, não mysqli)
+
+
+🧩 Desafio
+conectar ao MySQL
+tratar erro (try/catch)
+
+
+📝 Etapa 3 — Registro de usuário
+🧠 Objetivo
+
+Criar:
+
+register.php
+
+Form:
+email
+senha
+
+🔥 Lógica obrigatória
+validar email
+verificar se já existe no banco
+gerar hash:
+password_hash()
+
+inserir no banco
+🧠 Exercício 2
+
+Cadastrar um usuário no banco.
+
+🔐 Etapa 4 — Login real (com banco)
+
+Agora você substitui isso:
+
+$emailfic = ...
+
+
+Por:
+👉 buscar usuário no banco
+
+🔥 Lógica
+Buscar por email:
+SELECT * FROM users WHERE email = ?
+
+Se existir:
+password_verify()
+
+Criar sessão
+🧠 Exercício 3
+
+Login funcionando com dados reais.
+
+🔒 Etapa 5 — Dashboard protegido (já sabe)
+
+Reutiliza o que você fez ✔️
+
+🚪 Etapa 6 — Logout (já sabe)
+🧠 Etapa 7 — Listar usuários (CRUD começa)
+
+Criar:
+
+users.php
+
+
+👉 Mostrar todos usuários do banco
+
+🗑️ Etapa 8 — Deletar usuário
+
+Botão:
+
+Excluir
+
+⚠️ IMPORTANTE
+usar prepared statements (PDO)
+nunca colocar ID direto na query
+🎯 Resultado final
+
+Se você fizer tudo:
+
+👉 você terá:
+
+autenticação real
+banco de dados
+CRUD básico
+
+👉 isso = projeto de portfólio
+
+🚨 Estratégia inteligente pra você
+
+Como você:
+
+já fez PHP antes
+está migrando pra dev
+
+👉 foco agora NÃO é teoria
+👉 é construir coisa real
+
+Próximo passo
+
+Faz Etapa 1 + Etapa 2 (banco + conexão)
+
+e me manda:
+
+estrutura da tabela
+código da conexão
