@@ -27,12 +27,12 @@ class ModelUser
     return $this;
   }
 
-  public function getMail(): string
+  public function getEmail(): string
   {
     return $this->email;
   }
 
-  public function setMail(string $email): self
+  public function setEmail(string $email): self
   {
     $this->email = $email;
     return $this;
@@ -78,7 +78,7 @@ class ModelUser
     try {
       $req = $this->getDb()->prepare("INSERT INTO `users` (email, `password`) VALUES (?, ?)");
 
-      $email = $this->getMail();
+      $email = $this->getEmail();
       $password = $this->getPassword();
 
       $req->bindParam(1, $email, PDO::PARAM_STR);
@@ -110,6 +110,24 @@ class ModelUser
     }
   }
 
+  public function getUserByEmail(): array | string
+  {
+    try {
+      $req = $this->getDb()->prepare("SELECT id_user, email, created_at FROM `users` WHERE email = ? LIMIT 1;");
+      $email = $this->getEmail();
+      $req->bindParam(1, $email, PDO::PARAM_INT);
+      $req->execute();
+      $data = $req->fetchAll(PDO::FETCH_ASSOC);
+
+      if (!$data) {
+        return "Aucun utilisateur trouvé";
+      }
+      return $data;
+    } catch (Exception $e) {
+      return "Une erreur est survenue.";
+    }
+  }
+
   public function readAllUsers(): array | string
   {
     try {
@@ -128,6 +146,13 @@ class ModelUser
     }
   }
 
+
+
+  // Update
+  // UPDATE `users`
+  // SET email = 'pedro@email.com', `password` = '123456';
+  // WHERE condição
+
   public function delete(): string
   {
     try {
@@ -138,16 +163,7 @@ class ModelUser
 
       return "L'admin d'id $id a été éffacé.";
     } catch (EXCEPTION $e) {
-      return $e->getMessage();
+      return "Une erreur est survenue.";
     }
   }
-
-  // Update
-  // UPDATE `users`
-  // SET email = 'pedro@email.com', `password` = '123456';
-  // WHERE condição
-
-  // Delete
-  // DELETE FROM `users` WHERE user_id = x
-
 }
