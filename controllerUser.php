@@ -42,7 +42,8 @@ class ControllerUser
     $msg = '';
 
     if (isset($_POST['submit-user'])) {
-      if (!empty($_POST['email']) && !empty($_POST('password'))) {
+      if (!empty($_POST['email']) && !empty($_POST['password'])) {
+
 
         //validation email + sanitize
         if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
@@ -66,16 +67,18 @@ class ControllerUser
         } else {
           $msg = "Le mail n'est pas au bon format";
         }
+      } else {
+        $msg = "Veuillez remplir les champs obligatoires.";
       }
-    } else {
-      $msg = "Veuillez remplir les champs obligatoires.";
     }
     return $msg;
   }
 
   public function render(): void
   {
-    echo $this->setViewAddUser(new viewAddUser)->getViewAddUser()->displayView();
+    $msg = $this->addUser();
+
+    echo $this->setViewAddUser(new viewAddUser)->getViewAddUser()->setMessage($msg)->displayView();
   }
 }
 

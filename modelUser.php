@@ -119,9 +119,6 @@ class ModelUser
       $req->execute();
       $data = $req->fetchAll(PDO::FETCH_ASSOC);
 
-      if (!$data) {
-        return "Aucun utilisateur trouvé";
-      }
       return $data;
     } catch (Exception $e) {
       return "Une erreur est survenue.";

@@ -1,24 +1,32 @@
 <?php
 
+//todo ISSO AQUI PRA VER O QUE O FORM ENVIOU
+// echo '<pre>';
+// var_dump($_POST);
+// echo '</pre>';
+
+
 class viewAddUser
 {
 
-  // private ?string $message = '';
+  private ?string $message = '';
 
-  // public function getMessage(): ?string
-  // {
-  //   return $this->message;
-  // }
+  public function getMessage(): ?string
+  {
+    return $this->message;
+  }
 
-  // public function setMessage(?string $newMessage): self
-  // {
-  //   $this->message = $newMessage;
-  //   return $this;
-  // }
+  public function setMessage(?string $newMessage): self
+  {
+    $this->message = $newMessage;
+    return $this;
+  }
 
   //METHOD
   public function displayView(): string
   {
+    $msg = $this->getMessage();
+
     return <<<HTML
     <!DOCTYPE html>
       <html lang="en">
@@ -41,6 +49,9 @@ class viewAddUser
           <input type="password" id="password" name="password"><br><br>
           <button type="submit" name="submit-user">Enregistrer</button>
         </form>
+
+        <p> $msg </p>
+
 
         <a href="">Liste d'utilisateurs</a>
         </main>
