@@ -3,13 +3,15 @@
 include "./utils.php";
 include "./modelUser.php";
 include "./viewAddUser.php";
+include "./viewReadUser.php";
 
 class ControllerUser
 {
   private ?viewAddUser $viewAddUser;
+  private ?viewAddUser $viewReadUser;
   private ?modelUser $modelUser;
 
-  public function __construct(?viewAddUser $newViewAddUser, ?modelUser $newModelUser)
+  public function __construct(?viewAddUser $newViewAddUser, ?viewReadUser $setViewReadUser, ?modelUser $newModelUser)
   {
     $this->viewAddUser = $newViewAddUser;
     $this->modelUser = $newModelUser;
@@ -23,6 +25,17 @@ class ControllerUser
   public function setViewAddUser(?viewAddUser $viewAddUser): self
   {
     $this->viewAddUser = $viewAddUser;
+    return $this;
+  }
+
+  public function getViewReadUser(): ?viewReadUser
+  {
+    return $this->viewReadUser;
+  }
+
+  public function setViewReadUser(?viewReadUser $viewReadUser): self
+  {
+    $this->viewReadUser = $viewReadUser;
     return $this;
   }
 
@@ -74,13 +87,14 @@ class ControllerUser
     return $msg;
   }
 
+  // public function readUsers(): string | array {}
+
   public function render(): void
   {
     $msg = $this->addUser();
-
-    echo $this->setViewAddUser(new viewAddUser)->getViewAddUser()->setMessage($msg)->displayView();
+    echo $this->getViewAddUser()->setMessage($msg)->displayView();
   }
 }
 
-$addUser = new ControllerUser(new viewAddUser(), new ModelUser());
+$addUser = new ControllerUser(new viewAddUser(), new viewReadUser(),  new ModelUser());
 $addUser->render();

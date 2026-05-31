@@ -1,12 +1,7 @@
 <?php
 
-//todo ISSO AQUI PRA VER O QUE O FORM ENVIOU
-// echo '<pre>';
-// var_dump($_POST);
-// echo '</pre>';
 
-
-class viewAddUser
+class viewReadUser
 {
 
   private ?string $message = '';
@@ -27,7 +22,6 @@ class viewAddUser
   {
     $msg = $this->getMessage();
 
-
     return <<<HTML
     <!DOCTYPE html>
       <html lang="en">
@@ -40,20 +34,13 @@ class viewAddUser
 
       <body>
         <header>
-          <h1>ENREGISTREMENT D'UTILISATEURS</h1>
+          <h1>LISTE D'UTILISATEURS</h1>
         </header>
         <main>
-        <form action="" method="post" style="margin-bottom: 40px;">
-          <label for="email">Ton email:</label> <br>
-          <input type="text" id="email" name="email"><br>
-          <label for="password">Ton mdp:</label><br>
-          <input type="password" id="password" name="password"><br><br>
-          <button type="submit" name="submit-user">Enregistrer</button>
-        </form>
 
         <p> $msg </p>
 
-        <a href="readUsers.php">Liste d'utilisateurs</a>
+        <a href="">Retourner</a>
         </main>
       </body>
 
