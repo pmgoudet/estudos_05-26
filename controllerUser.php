@@ -7,48 +7,52 @@ include "./viewReadUser.php";
 
 class ControllerUser
 {
-  private ?viewAddUser $viewAddUser;
-  private ?viewAddUser $viewReadUser;
-  private ?modelUser $modelUser;
+  private ?ViewAddUser $viewAddUser;
+  private ?ViewReadUser $viewReadUser;
+  private ?ModelUser $modelUser;
 
-  public function __construct(?viewAddUser $newViewAddUser, ?viewReadUser $setViewReadUser, ?modelUser $newModelUser)
+  public function __construct(?ViewAddUser $newViewAddUser, ?ViewReadUser $setViewReadUser, ?ModelUser $newModelUser)
   {
     $this->viewAddUser = $newViewAddUser;
+    $this->viewReadUser = $setViewReadUser;
     $this->modelUser = $newModelUser;
   }
 
-  public function getViewAddUser(): ?viewAddUser
+  public function getViewAddUser(): ?ViewAddUser
   {
     return $this->viewAddUser;
   }
 
-  public function setViewAddUser(?viewAddUser $viewAddUser): self
+  public function setViewAddUser(?ViewAddUser $viewAddUser): self
   {
     $this->viewAddUser = $viewAddUser;
     return $this;
   }
 
-  public function getViewReadUser(): ?viewReadUser
+  public function getViewReadUser(): ?ViewReadUser
   {
     return $this->viewReadUser;
   }
 
-  public function setViewReadUser(?viewReadUser $viewReadUser): self
+  public function setViewReadUser(?ViewReadUser $viewReadUser): self
   {
     $this->viewReadUser = $viewReadUser;
     return $this;
   }
 
-  public function getModelUser(): ?modelUser
+  public function getModelUser(): ?ModelUser
   {
     return $this->modelUser;
   }
 
-  public function setModelUser(?modelUser $modelUser): self
+  public function setModelUser(?ModelUser $modelUser): self
   {
     $this->modelUser = $modelUser;
     return $this;
   }
+
+
+  //todo METHODS
 
   public function addUser(): string
   {
@@ -87,14 +91,20 @@ class ControllerUser
     return $msg;
   }
 
-  // public function readUsers(): string | array {}
+  public function readUsers(): string | array {}
 
-  public function render(): void
+
+  //todo RENDERS
+
+  public function renderAdd(): void
   {
     $msg = $this->addUser();
     echo $this->getViewAddUser()->setMessage($msg)->displayView();
   }
-}
 
-$addUser = new ControllerUser(new viewAddUser(), new viewReadUser(),  new ModelUser());
-$addUser->render();
+  public function renderRead(): void
+  {
+    $msg = $this->readUsers();
+    echo $this->getViewReadUser()->setMessage($msg)->displayView();
+  }
+}

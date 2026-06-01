@@ -6,7 +6,7 @@
 // echo '</pre>';
 
 
-class viewAddUser
+class ViewAddUser
 {
 
   private ?string $message = '';
@@ -53,7 +53,7 @@ class viewAddUser
 
         <p> $msg </p>
 
-        <a href="readUsers.php">Liste d'utilisateurs</a>
+        <a href="read">Liste d'utilisateurs</a>
         </main>
       </body>
 

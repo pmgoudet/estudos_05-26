@@ -1,7 +1,7 @@
 <?php
 
 
-class viewReadUser
+class ViewReadUser
 {
 
   private ?string $message = '';
